@@ -7,23 +7,23 @@
 </head>
 <body>
 
-    <h1>Olá, estudante!</h1>
+    <h1>Meu primeiro site</h1>
 
-    <p>Agora é com você. No arquivo <strong>index.html</strong> criado na aula, teste outras tags HTML.</p>
+    <p>Este é o meu primeiro site em HTML. Estou aprendendo a criar paginas na web</p>
 
-    <h2>Desafio</h2>
+    <h2>Sobre mim</h2>
 
     <ul>
-        <li>Substitua as tags usadas inicialmente por outras tags de texto.</li>
-        <li>Observe como cada mudança altera a aparência do conteúdo.</li>
-        <li>Atualize a visualização da página sempre que fizer alterações.</li>
+        <li>Gosto de tecnologia</li>
+        <li>Estou aprendendo HTML.</li>
+        <li>Quero criar sites.</li>
     </ul>
 
-    <p><strong>Dica:</strong> troque apenas a tag e mantenha o texto para comparar os resultados.</p>
+    <p><strong>Dica:</strong> Continue praticando HTML todos os dias.</p>
 
-    <h3>Para realizar este desafio, utilize o link do seu projeto atual.</h3>
+    <h3>Obrigado pela visita!</h3>
 
-    <p><em>Bons estudos e bom desafio!</em></p>
+    <p><em>Até a próxima!</em></p>
 
 </body>
 </html>

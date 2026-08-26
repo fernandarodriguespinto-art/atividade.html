@@ -1,0 +1,1956 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="NEXUS — notícias, inteligência artificial, programação, gadgets e inovação.">
+
+    <title>NEXUS — Tech Blog</title>
+
+    <!-- Fonte -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #05060a;
+            color: #f5f7ff;
+            font-family: "Inter", sans-serif;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input {
+            font-family: inherit;
+        }
+
+        ::selection {
+            background: #7c5cff;
+            color: white;
+        }
+
+
+        /* =========================================================
+           VARIÁVEIS
+        ========================================================= */
+
+        :root {
+            --purple: #805cff;
+            --purple-light: #a78bfa;
+            --blue: #20d9ff;
+            --pink: #ff4ecd;
+
+            --background: #05060a;
+            --surface: #0c0e15;
+            --surface-2: #11141d;
+
+            --border: rgba(255,255,255,.09);
+
+            --text: #f7f8ff;
+            --muted: #8991a5;
+
+            --max-width: 1250px;
+        }
+
+
+        /* =========================================================
+           BACKGROUND
+        ========================================================= */
+
+        body::before {
+            content: "";
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            top: -250px;
+            left: -200px;
+            background: #613cff;
+            opacity: .12;
+            filter: blur(150px);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -2;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            right: -200px;
+            top: 500px;
+            background: #00cfff;
+            opacity: .08;
+            filter: blur(150px);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -2;
+        }
+
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 999;
+
+            background: rgba(5,6,10,.72);
+            backdrop-filter: blur(20px);
+
+            border-bottom: 1px solid rgba(255,255,255,.06);
+        }
+
+        .navbar {
+            max-width: var(--max-width);
+            height: 76px;
+            margin: auto;
+
+            padding: 0 25px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            font-family: "Space Grotesk";
+            font-size: 25px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .logo-icon {
+            width: 34px;
+            height: 34px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 10px;
+
+            background: linear-gradient(
+                135deg,
+                var(--purple),
+                var(--blue)
+            );
+
+            box-shadow:
+                0 0 30px rgba(128,92,255,.35);
+        }
+
+        .logo span {
+            color: var(--purple-light);
+        }
+
+        nav {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        nav a {
+            color: #a6adbf;
+            font-size: 14px;
+            font-weight: 500;
+            transition: .3s;
+        }
+
+        nav a:hover {
+            color: white;
+        }
+
+        .header-button {
+            padding: 10px 17px;
+
+            border: 1px solid rgba(255,255,255,.1);
+            border-radius: 9px;
+
+            background: rgba(255,255,255,.04);
+
+            font-size: 13px;
+            font-weight: 600;
+
+            transition: .3s;
+        }
+
+        .header-button:hover {
+            background: rgba(255,255,255,.08);
+            border-color: rgba(255,255,255,.2);
+        }
+
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .hero {
+            max-width: var(--max-width);
+            min-height: 800px;
+
+            margin: auto;
+            padding: 150px 25px 80px;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            align-items: center;
+            gap: 70px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 8px 13px;
+
+            border: 1px solid rgba(128,92,255,.3);
+            border-radius: 50px;
+
+            background: rgba(128,92,255,.08);
+
+            color: #b9a9ff;
+
+            font-size: 12px;
+            font-weight: 600;
+
+            margin-bottom: 25px;
+        }
+
+        .tag-dot {
+            width: 7px;
+            height: 7px;
+
+            background: #6effb0;
+            border-radius: 50%;
+
+            box-shadow: 0 0 10px #6effb0;
+        }
+
+        .hero h1 {
+            font-family: "Space Grotesk";
+
+            font-size: clamp(50px, 6vw, 82px);
+            line-height: .98;
+
+            letter-spacing: -4px;
+
+            max-width: 700px;
+
+            margin-bottom: 28px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(
+                100deg,
+                #9c7cff,
+                #24dfff,
+                #ff64da
+            );
+
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero-description {
+            color: var(--muted);
+
+            max-width: 610px;
+
+            font-size: 17px;
+            line-height: 1.8;
+
+            margin-bottom: 35px;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .primary-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+
+            padding: 14px 20px;
+
+            border-radius: 10px;
+
+            background: linear-gradient(
+                135deg,
+                #805cff,
+                #5e87ff
+            );
+
+            font-weight: 700;
+            font-size: 14px;
+
+            box-shadow:
+                0 15px 40px rgba(128,92,255,.22);
+
+            transition: .3s;
+        }
+
+        .primary-button:hover {
+            transform: translateY(-3px);
+            box-shadow:
+                0 20px 50px rgba(128,92,255,.35);
+        }
+
+        .secondary-button {
+            padding: 14px 20px;
+
+            border: 1px solid var(--border);
+            border-radius: 10px;
+
+            color: #b7bdcd;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            transition: .3s;
+        }
+
+        .secondary-button:hover {
+            color: white;
+            background: rgba(255,255,255,.05);
+        }
+
+
+        /* =========================================================
+           HERO IMAGE
+        ========================================================= */
+
+        .hero-visual {
+            position: relative;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 500px;
+
+            object-fit: cover;
+
+            border-radius: 24px;
+
+            border: 1px solid rgba(255,255,255,.12);
+
+            box-shadow:
+                0 40px 100px rgba(0,0,0,.6);
+
+            filter: saturate(1.15);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+
+            border-radius: 24px;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    transparent 40%,
+                    rgba(5,6,10,.75)
+                );
+        }
+
+        .floating-card {
+            position: absolute;
+
+            left: -35px;
+            bottom: 30px;
+
+            width: 245px;
+
+            padding: 18px;
+
+            background: rgba(12,14,21,.9);
+
+            border: 1px solid rgba(255,255,255,.1);
+
+            border-radius: 15px;
+
+            backdrop-filter: blur(15px);
+
+            box-shadow: 0 20px 50px rgba(0,0,0,.4);
+        }
+
+        .floating-card small {
+            color: #7f879b;
+            font-size: 11px;
+        }
+
+        .floating-card strong {
+            display: block;
+
+            margin-top: 5px;
+
+            font-size: 15px;
+            line-height: 1.4;
+        }
+
+        .author-row {
+            margin-top: 15px;
+
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .avatar {
+            width: 28px;
+            height: 28px;
+
+            border-radius: 50%;
+
+            object-fit: cover;
+        }
+
+        .author-row span {
+            color: #9ba3b6;
+            font-size: 11px;
+        }
+
+
+        /* =========================================================
+           SECTION
+        ========================================================= */
+
+        .section {
+            max-width: var(--max-width);
+
+            margin: auto;
+
+            padding: 90px 25px;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+
+            margin-bottom: 35px;
+        }
+
+        .section-heading h2 {
+            font-family: "Space Grotesk";
+
+            font-size: 36px;
+            letter-spacing: -1.5px;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+
+        /* =========================================================
+           FEATURED GRID
+        ========================================================= */
+
+        .featured-grid {
+            display: grid;
+
+            grid-template-columns: 1.4fr .8fr;
+
+            gap: 20px;
+        }
+
+        .featured-card {
+            position: relative;
+
+            min-height: 480px;
+
+            overflow: hidden;
+
+            border-radius: 20px;
+
+            border: 1px solid var(--border);
+
+            background: var(--surface);
+        }
+
+        .featured-card img {
+            width: 100%;
+            height: 100%;
+
+            min-height: 480px;
+
+            object-fit: cover;
+
+            transition: transform .6s;
+        }
+
+        .featured-card:hover img {
+            transform: scale(1.04);
+        }
+
+        .featured-gradient {
+            position: absolute;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(4,5,9,.98),
+                    rgba(4,5,9,.05) 70%
+                );
+        }
+
+        .featured-content {
+            position: absolute;
+
+            bottom: 0;
+            left: 0;
+
+            padding: 35px;
+
+            max-width: 700px;
+        }
+
+        .category {
+            color: #a78bfa;
+
+            font-size: 11px;
+            font-weight: 700;
+
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .featured-content h3 {
+            font-family: "Space Grotesk";
+
+            font-size: 34px;
+            line-height: 1.15;
+
+            margin: 10px 0;
+        }
+
+        .featured-content p {
+            color: #a7afc0;
+
+            font-size: 14px;
+
+            max-width: 570px;
+        }
+
+        .small-feature {
+            display: flex;
+            flex-direction: column;
+
+            min-height: 230px;
+
+            overflow: hidden;
+
+            border-radius: 20px;
+
+            border: 1px solid var(--border);
+
+            background: var(--surface);
+
+            position: relative;
+        }
+
+        .small-feature img {
+            width: 100%;
+            height: 230px;
+
+            object-fit: cover;
+        }
+
+        .small-feature-content {
+            position: absolute;
+            bottom: 0;
+
+            padding: 25px;
+
+            background:
+                linear-gradient(
+                    transparent,
+                    rgba(5,6,10,.98)
+                );
+
+            width: 100%;
+        }
+
+        .small-feature-content h3 {
+            font-family: "Space Grotesk";
+            font-size: 20px;
+            margin-top: 7px;
+        }
+
+        .right-features {
+            display: grid;
+            gap: 20px;
+        }
+
+
+        /* =========================================================
+           POSTS
+        ========================================================= */
+
+        .posts-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 22px;
+        }
+
+        .post {
+            overflow: hidden;
+
+            border-radius: 16px;
+
+            border: 1px solid var(--border);
+
+            background: var(--surface);
+
+            transition: .35s;
+        }
+
+        .post:hover {
+            transform: translateY(-7px);
+
+            border-color:
+                rgba(128,92,255,.35);
+
+            box-shadow:
+                0 25px 50px rgba(0,0,0,.25);
+        }
+
+        .post-image {
+            height: 220px;
+
+            overflow: hidden;
+        }
+
+        .post-image img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            transition: transform .5s;
+        }
+
+        .post:hover img {
+            transform: scale(1.06);
+        }
+
+        .post-content {
+            padding: 23px;
+        }
+
+        .post h3 {
+            font-family: "Space Grotesk";
+
+            font-size: 21px;
+            line-height: 1.3;
+
+            margin: 10px 0;
+        }
+
+        .post p {
+            color: var(--muted);
+
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .post-footer {
+            margin-top: 20px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .date {
+            color: #656d80;
+            font-size: 11px;
+        }
+
+        .read-more {
+            color: #b29fff;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+
+        /* =========================================================
+           CATEGORIES
+        ========================================================= */
+
+        .categories {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .category-button {
+            padding: 10px 15px;
+
+            border-radius: 50px;
+
+            border: 1px solid var(--border);
+
+            background: rgba(255,255,255,.025);
+
+            color: #9ca4b8;
+
+            font-size: 12px;
+
+            transition: .3s;
+        }
+
+        .category-button:hover,
+        .category-button.active {
+            color: white;
+
+            border-color:
+                rgba(128,92,255,.5);
+
+            background:
+                rgba(128,92,255,.12);
+        }
+
+
+        /* =========================================================
+           NEWSLETTER
+        ========================================================= */
+
+        .newsletter {
+            position: relative;
+
+            overflow: hidden;
+
+            padding: 70px 30px;
+
+            border-radius: 25px;
+
+            text-align: center;
+
+            background:
+                radial-gradient(
+                    circle at 50% 0%,
+                    rgba(128,92,255,.25),
+                    transparent 55%
+                ),
+                #0b0d15;
+
+            border: 1px solid var(--border);
+        }
+
+        .newsletter h2 {
+            font-family: "Space Grotesk";
+
+            font-size: 40px;
+            letter-spacing: -1px;
+
+            margin-bottom: 10px;
+        }
+
+        .newsletter p {
+            color: var(--muted);
+
+            max-width: 500px;
+
+            margin: auto auto 30px;
+
+            font-size: 14px;
+        }
+
+        .newsletter-form {
+            display: flex;
+
+            justify-content: center;
+
+            max-width: 500px;
+
+            margin: auto;
+
+            gap: 10px;
+        }
+
+        .newsletter input {
+            flex: 1;
+
+            min-width: 0;
+
+            padding: 14px 16px;
+
+            background: #080a10;
+
+            border: 1px solid var(--border);
+
+            border-radius: 9px;
+
+            outline: none;
+
+            color: white;
+        }
+
+        .newsletter input:focus {
+            border-color: #7659ef;
+        }
+
+        .newsletter button {
+            border: none;
+            cursor: pointer;
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+            max-width: var(--max-width);
+
+            margin: auto;
+
+            padding: 50px 25px 30px;
+
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-top {
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 40px;
+
+            padding-bottom: 40px;
+        }
+
+        .footer-brand {
+            max-width: 350px;
+        }
+
+        .footer-brand p {
+            color: var(--muted);
+
+            margin-top: 15px;
+
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .socials {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social {
+            width: 38px;
+            height: 38px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 9px;
+
+            border: 1px solid var(--border);
+
+            color: #929aad;
+
+            transition: .3s;
+        }
+
+        .social:hover {
+            color: white;
+            background: rgba(255,255,255,.06);
+        }
+
+        .copyright {
+            color: #555c6e;
+
+            font-size: 11px;
+
+            padding-top: 25px;
+
+            border-top: 1px solid var(--border);
+        }
+
+
+        /* =========================================================
+           MOBILE
+        ========================================================= */
+
+        @media (max-width: 950px) {
+
+            .hero {
+                grid-template-columns: 1fr;
+
+                padding-top: 130px;
+            }
+
+            .hero-visual {
+                max-width: 700px;
+            }
+
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .posts-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 700px) {
+
+            nav {
+                display: none;
+            }
+
+            .header-button {
+                display: none;
+            }
+
+            .hero {
+                min-height: auto;
+
+                padding-top: 120px;
+                padding-bottom: 50px;
+            }
+
+            .hero h1 {
+                font-size: 52px;
+                letter-spacing: -3px;
+            }
+
+            .hero-description {
+                font-size: 15px;
+            }
+
+            .hero-image {
+                height: 380px;
+            }
+
+            .floating-card {
+                left: 15px;
+                bottom: 15px;
+            }
+
+            .section {
+                padding: 65px 20px;
+            }
+
+            .section-heading {
+                display: block;
+            }
+
+            .section-heading h2 {
+                font-size: 29px;
+                margin-bottom: 7px;
+            }
+
+            .posts-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-content {
+                padding: 25px;
+            }
+
+            .featured-content h3 {
+                font-size: 27px;
+            }
+
+            .newsletter {
+                padding: 50px 20px;
+            }
+
+            .newsletter h2 {
+                font-size: 30px;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter button {
+                width: 100%;
+            }
+
+            .footer-top {
+                flex-direction: column;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =========================================================
+         HEADER
+    ========================================================= -->
+
+    <header>
+
+        <div class="navbar">
+
+            <a href="#" class="logo">
+
+                <div class="logo-icon">
+                    N
+                </div>
+
+                NEXUS<span>.</span>
+
+            </a>
+
+
+            <nav>
+
+                <a href="#inicio">
+                    Início
+                </a>
+
+                <a href="#destaques">
+                    Destaques
+                </a>
+
+                <a href="#artigos">
+                    Artigos
+                </a>
+
+                <a href="#categorias">
+                    Categorias
+                </a>
+
+            </nav>
+
+
+            <a href="#newsletter" class="header-button">
+                Newsletter →
+            </a>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================================
+         HERO
+    ========================================================= -->
+
+    <main>
+
+        <section class="hero" id="inicio">
+
+            <div class="hero-content">
+
+                <div class="tag">
+
+                    <span class="tag-dot"></span>
+
+                    O futuro da tecnologia começa aqui
+
+                </div>
+
+
+                <h1>
+
+                    Tecnologia que
+                    <span class="gradient-text">
+                        muda tudo.
+                    </span>
+
+                </h1>
+
+
+                <p class="hero-description">
+
+                    Notícias, inteligência artificial, programação,
+                    gadgets e as ideias que estão moldando o futuro.
+                    Conteúdo tech para quem quer estar sempre um passo
+                    à frente.
+
+                </p>
+
+
+                <div class="hero-actions">
+
+                    <a
+                        href="#artigos"
+                        class="primary-button"
+                    >
+                        Explorar artigos
+                        →
+                    </a>
+
+                    <a
+                        href="#destaques"
+                        class="secondary-button"
+                    >
+                        Ver destaques
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="hero-visual">
+
+                <img
+                    class="hero-image"
+                    src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=85"
+                    alt="Tecnologia e placa eletrônica"
+                >
+
+                <div class="hero-overlay"></div>
+
+
+                <div class="floating-card">
+
+                    <small>
+                        ARTIGO EM DESTAQUE
+                    </small>
+
+                    <strong>
+                        O futuro da inteligência artificial já começou
+                    </strong>
+
+                    <div class="author-row">
+
+                        <img
+                            class="avatar"
+                            src="https://i.pravatar.cc/100?img=12"
+                            alt="Autor"
+                        >
+
+                        <span>
+                            Lucas Martins · 8 min de leitura
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             CATEGORIAS
+        ====================================================== -->
+
+        <section
+            class="section"
+            id="categorias"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Explore por <span class="gradient-text">
+                            categoria
+                        </span>
+                    </h2>
+
+                    <p>
+                        Encontre conteúdos sobre o que você mais gosta.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="categories">
+
+                <button class="category-button active">
+                    Todos
+                </button>
+
+                <button class="category-button">
+                    Inteligência Artificial
+                </button>
+
+                <button class="category-button">
+                    Programação
+                </button>
+
+                <button class="category-button">
+                    Gadgets
+                </button>
+
+                <button class="category-button">
+                    Cybersecurity
+                </button>
+
+                <button class="category-button">
+                    Startups
+                </button>
+
+                <button class="category-button">
+                    Ciência
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             DESTAQUES
+        ====================================================== -->
+
+        <section
+            class="section"
+            id="destaques"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Destaques da <span class="gradient-text">
+                            semana
+                        </span>
+                    </h2>
+
+                    <p>
+                        Os assuntos que estão movimentando o mundo tech.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="featured-grid">
+
+
+                <!-- GRANDE -->
+
+                <article class="featured-card">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=85"
+                        alt="Inteligência artificial"
+                    >
+
+                    <div class="featured-gradient"></div>
+
+
+                    <div class="featured-content">
+
+                        <span class="category">
+                            Inteligência Artificial
+                        </span>
+
+                        <h3>
+                            A nova era da inteligência artificial está apenas começando
+                        </h3>
+
+                        <p>
+                            Modelos cada vez mais inteligentes estão
+                            transformando programação, criatividade,
+                            negócios e a forma como interagimos com
+                            computadores.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- DIREITA -->
+
+                <div class="right-features">
+
+
+                    <article class="small-feature">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=900&q=85"
+                            alt="Computador retrô"
+                        >
+
+                        <div class="small-feature-content">
+
+                            <span class="category">
+                                Gadgets
+                            </span>
+
+                            <h3>
+                                A evolução dos computadores
+                            </h3>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <article class="small-feature">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=900&q=85"
+                            alt="Cybersecurity"
+                        >
+
+                        <div class="small-feature-content">
+
+                            <span class="category">
+                                Cybersecurity
+                            </span>
+
+                            <h3>
+                                Como proteger seus dados na internet
+                            </h3>
+
+                        </div>
+
+                    </article>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             ARTIGOS
+        ====================================================== -->
+
+        <section
+            class="section"
+            id="artigos"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Últimos <span class="gradient-text">
+                            artigos
+                        </span>
+                    </h2>
+
+                    <p>
+                        Conteúdo novo para você acompanhar.
+                    </p>
+
+                </div>
+
+                <a
+                    href="#"
+                    class="secondary-button"
+                >
+                    Ver todos
+                </a>
+
+            </div>
+
+
+
+            <div class="posts-grid">
+
+
+                <!-- POST 1 -->
+
+                <article class="post">
+
+                    <div class="post-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1555255707-c07966088b7b?auto=format&fit=crop&w=900&q=85"
+                            alt="Inteligência artificial"
+                        >
+
+                    </div>
+
+
+                    <div class="post-content">
+
+                        <span class="category">
+                            IA
+                        </span>
+
+                        <h3>
+                            Como a inteligência artificial está mudando a programação
+                        </h3>
+
+                        <p>
+                            As novas ferramentas de IA estão mudando
+                            completamente o trabalho dos desenvolvedores.
+                        </p>
+
+
+                        <div class="post-footer">
+
+                            <span class="date">
+                                26 AGO 2026
+                            </span>
+
+                            <a
+                                href="#"
+                                class="read-more"
+                            >
+                                Ler artigo →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- POST 2 -->
+
+                <article class="post">
+
+                    <div class="post-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=900&q=85"
+                            alt="Código de programação"
+                        >
+
+                    </div>
+
+
+                    <div class="post-content">
+
+                        <span class="category">
+                            Programação
+                        </span>
+
+                        <h3>
+                            7 tecnologias que todo desenvolvedor deveria conhecer
+                        </h3>
+
+                        <p>
+                            Uma seleção das tecnologias que estão
+                            ganhando espaço no mercado.
+                        </p>
+
+
+                        <div class="post-footer">
+
+                            <span class="date">
+                                24 AGO 2026
+                            </span>
+
+                            <a
+                                href="#"
+                                class="read-more"
+                            >
+                                Ler artigo →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- POST 3 -->
+
+                <article class="post">
+
+                    <div class="post-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=85"
+                            alt="Tecnologia"
+                        >
+
+                    </div>
+
+
+                    <div class="post-content">
+
+                        <span class="category">
+                            Tecnologia
+                        </span>
+
+                        <h3>
+                            O que esperar da próxima geração de computadores
+                        </h3>
+
+                        <p>
+                            Processadores, memória e novas arquiteturas
+                            prometem mudar novamente o mercado.
+                        </p>
+
+
+                        <div class="post-footer">
+
+                            <span class="date">
+                                22 AGO 2026
+                            </span>
+
+                            <a
+                                href="#"
+                                class="read-more"
+                            >
+                                Ler artigo →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- POST 4 -->
+
+                <article class="post">
+
+                    <div class="post-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1510511459019-5dda7724fd87?auto=format&fit=crop&w=900&q=85"
+                            alt="Notebook"
+                        >
+
+                    </div>
+
+
+                    <div class="post-content">
+
+                        <span class="category">
+                            Gadgets
+                        </span>
+
+                        <h3>
+                            O notebook perfeito para trabalhar e estudar
+                        </h3>
+
+                        <p>
+                            O que realmente importa na hora de escolher
+                            um notebook em 2026.
+                        </p>
+
+
+                        <div class="post-footer">
+
+                            <span class="date">
+                                20 AGO 2026
+                            </span>
+
+                            <a
+                                href="#"
+                                class="read-more"
+                            >
+                                Ler artigo →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- POST 5 -->
+
+                <article class="post">
+
+                    <div class="post-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=900&q=85"
+                            alt="Computação quântica"
+                        >
+
+                    </div>
+
+
+                    <div class="post-content">
+
+                        <span class="category">
+                            Ciência
+                        </span>
+
+                        <h3>
+                            Computação quântica: finalmente estamos chegando lá?
+                        </h3>
+
+                        <p>
+                            Entenda por que os computadores quânticos
+                            podem transformar a computação.
+                        </p>
+
+
+                        <div class="post-footer">
+
+                            <span class="date">
+                                18 AGO 2026
+                            </span>
+
+                            <a
+                                href="#"
+                                class="read-more"
+                            >
+                                Ler artigo →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- POST 6 -->
+
+                <article class="post">
+
+                    <div class="post-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=900&q=85"
+                            alt="Data center"
+                        >
+
+                    </div>
+
+
+                    <div class="post-content">
+
+                        <span class="category">
+                            Cloud
+                        </span>
+
+                        <h3>
+                            Por dentro dos gigantescos data centers
+                        </h3>
+
+                        <p>
+                            Como funcionam as estruturas que mantêm
+                            a internet funcionando 24 horas por dia.
+                        </p>
+
+
+                        <div class="post-footer">
+
+                            <span class="date">
+                                16 AGO 2026
+                            </span>
+
+                            <a
+                                href="#"
+                                class="read-more"
+                            >
+                                Ler artigo →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             NEWSLETTER
+        ====================================================== -->
+
+        <section
+            class="section"
+            id="newsletter"
+        >
+
+            <div class="newsletter">
+
+                <h2>
+                    Fique por dentro. 🚀
+                </h2>
+
+                <p>
+                    Receba os melhores conteúdos de tecnologia
+                    diretamente no seu e-mail.
+                </p>
+
+
+                <form
+                    class="newsletter-form"
+                    onsubmit="inscrever(event)"
+                >
+
+                    <input
+                        type="email"
+                        placeholder="Digite seu melhor e-mail"
+                        required
+                    >
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                    >
+                        Inscrever-se
+                    </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================= -->
+
+    <footer>
+
+        <div class="footer-top">
+
+            <div class="footer-brand">
+
+                <a href="#" class="logo">
+
+                    <div class="logo-icon">
+                        N
+                    </div>
+
+                    NEXUS<span>.</span>
+
+                </a>
+
+                <p>
+                    Um blog independente sobre tecnologia,
+                    inteligência artificial, programação,
+                    ciência e inovação.
+                </p>
+
+            </div>
+
+
+            <div class="socials">
+
+                <a
+                    href="#"
+                    class="social"
+                    aria-label="Twitter"
+                >
+                    𝕏
+                </a>
+
+                <a
+                    href="#"
+                    class="social"
+                    aria-label="GitHub"
+                >
+                    GH
+                </a>
+
+                <a
+                    href="#"
+                    class="social"
+                    aria-label="Instagram"
+                >
+                    ◎
+                </a>
+
+                <a
+                    href="#"
+                    class="social"
+                    aria-label="YouTube"
+                >
+                    ▶
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            © 2026 NEXUS. Todos os direitos reservados.
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================= -->
+
+    <script>
+
+        function inscrever(event) {
+
+            event.preventDefault();
+
+            const email =
+                event.target.querySelector("input").value;
+
+            if (email) {
+
+                alert(
+                    "🚀 Inscrição realizada com sucesso!"
+                );
+
+                event.target.reset();
+
+            }
+
+        }
+
+
+        /* Botões de categoria */
+
+        const categoryButtons =
+            document.querySelectorAll(
+                ".category-button"
+            );
+
+        categoryButtons.forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    categoryButtons.forEach(btn => {
+                        btn.classList.remove("active");
+                    });
+
+                    button.classList.add("active");
+
+                }
+            );
+
+        });
+
+
+        /* Pequena animação ao entrar na tela */
+
+        const cards =
+            document.querySelectorAll(
+                ".post, .featured-card, .small-feature"
+            );
+
+        const observer =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(entry => {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target.style.opacity = "1";
+                            entry.target.style.transform =
+                                "translateY(0)";
+
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: .1
+                }
+            );
+
+
+        cards.forEach(card => {
+
+            card.style.opacity = "0";
+
+            card.style.transform =
+                "translateY(20px)";
+
+            card.style.transition =
+                "opacity .7s ease, transform .7s ease";
+
+            observer.observe(card);
+
+        });
+
+    </script>
+
+</body>
+</html>
